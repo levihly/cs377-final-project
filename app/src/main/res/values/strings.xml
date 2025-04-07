@@ -2,4 +2,11 @@
     <string name="app_name">ReleaseFinder</string>
     <string name="enter_number">Enter a catalogue number:</string>
     <string name="submit">submit</string>
+    <string name="title_placeholder">Release Name</string>
+    <string name="sample_year">2025</string>
+    <string name="sample_num">ABC-12345</string>
+    <string name="released_in">Released in:</string>
+    <string name="back_button">Back to Home</string>
+    <string name="original_release">This is an Original Release Copy</string>
+    <string name="sample_country">USA</string>
 </resources>
