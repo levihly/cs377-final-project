@@ -7,8 +7,8 @@ import com.nau.releasefinder.network.model.ReleaseResponse
 
 class ReleaseRepository(private val releaseDao: ReleaseDao) {
     // get a release by its catalog number
-    suspend fun fetchRelease(catNo: String): ReleaseResponse {
-        return RetrofitClient.apiService.getRelaseByCatNo(catNo)
+    suspend fun fetchRelease(id: String): ReleaseResponse {
+        return RetrofitClient.apiService.getReleaseById(id)
     }
 
     // insert a release into the db

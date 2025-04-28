@@ -1,4 +1,7 @@
 package com.nau.releasefinder.network.model
 
-class ReleaseResponse {
-}
+data class ReleaseResponse(
+    val title: String,
+    val id: Int,
+    val thumb: String
+)
