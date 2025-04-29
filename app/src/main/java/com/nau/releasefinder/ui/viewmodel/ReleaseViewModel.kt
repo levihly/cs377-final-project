@@ -23,7 +23,8 @@ class ReleaseViewModel(private val repository: ReleaseRepository) : ViewModel() 
                 // get the API response
                 val response = repository.fetchRelease(id)
                 // get the release returned
-                val release: Release = response.release
+                val release: Release = response.results.first()
+                println(release.title)
                 _title.value = release.title
 
                 // go to details w/ the release

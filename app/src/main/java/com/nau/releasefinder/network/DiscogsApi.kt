@@ -10,5 +10,5 @@ import retrofit2.http.Query
 interface DiscogsApi {
 
     @GET("search?q=&key=tNuKEPkKfJZdNkwmjYoH&secret=wxMLPHyGzWkFPzDGEqleCvHkfRPDTRGT")
-    suspend fun getReleaseByCatNo(@Query("q") searchQuery: String) : ReleaseResponse
+    suspend fun getReleaseByCatNo(@Query("query") query: String) : ReleaseResponse
 }
