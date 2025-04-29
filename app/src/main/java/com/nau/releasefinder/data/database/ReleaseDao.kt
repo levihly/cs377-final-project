@@ -16,7 +16,7 @@ interface ReleaseDao {
 
     // query the release with a select statement
     @Query("SELECT * FROM releaseTable")
-    suspend fun getRelease(): Flow<Release>
+    fun getRelease(): Flow<Release>
 
     // delete a release
     @Delete

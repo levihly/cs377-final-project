@@ -1,7 +1,7 @@
 package com.nau.releasefinder.network.model
 
+import com.nau.releasefinder.data.database.model.Release
+
 data class ReleaseResponse(
-    val title: String,
-    val id: Int,
-    val thumb: String
+    val release: Release
 )
