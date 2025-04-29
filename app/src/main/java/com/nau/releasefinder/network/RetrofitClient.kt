@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 object RetrofitClient {
     val apiService: DiscogsApi by lazy {
         Retrofit.Builder()
-            .baseUrl("https://api.discogs.com/")
+            .baseUrl("https://api.discogs.com/database/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(DiscogsApi::class.java)

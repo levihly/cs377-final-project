@@ -9,6 +9,6 @@ import retrofit2.http.Query
 
 interface DiscogsApi {
 
-    @GET("releases/")
-    suspend fun getReleaseById(@Path("release_id") releaseId: String, @Query("curr_abbr") currencyAbbreviation: String? = null) : ReleaseResponse
+    @GET("search?q=&key=tNuKEPkKfJZdNkwmjYoH&secret=wxMLPHyGzWkFPzDGEqleCvHkfRPDTRGT")
+    suspend fun getReleaseByCatNo(@Query("q") searchQuery: String) : ReleaseResponse
 }
