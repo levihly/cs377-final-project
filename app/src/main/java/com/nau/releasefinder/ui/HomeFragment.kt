@@ -21,6 +21,7 @@ import com.nau.releasefinder.ui.viewmodel.ReleaseViewModelFactory
 class HomeFragment : Fragment() {
     // create variables for the view model and navigation controller
     private lateinit var releaseViewModel: ReleaseViewModel
+    private lateinit var navController: NavController
 
     // on view creation
     override fun onCreateView(
@@ -47,6 +48,9 @@ class HomeFragment : Fragment() {
         val searchText: EditText = view.findViewById(R.id.et_search_box)
         val submitButton: Button = view.findViewById(R.id.btn_submit)
 
+        // set the nav controller
+        navController = findNavController()
+
         // listen for a submit button click
         submitButton.setOnClickListener {
             // get the search field text
@@ -54,10 +58,14 @@ class HomeFragment : Fragment() {
 
             // if not empty, search for the release
             if( search.isNotEmpty() ) {
+                // first, set the nav controller over in the viewmodel
+                releaseViewModel.setNavController(navController)
+                // then, fetch the release
                 releaseViewModel.fetchRelease(search)
             }
             // otherwise if empty, let the user know they need to fill in the search bar
             else {
+                // use a Toast message
                 Toast.makeText(requireContext(), "Error: Please enter a catalog number", Toast.LENGTH_SHORT).show()
             }
         }

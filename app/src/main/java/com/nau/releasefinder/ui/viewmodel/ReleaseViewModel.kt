@@ -17,6 +17,12 @@ class ReleaseViewModel(private val repository: ReleaseRepository) : ViewModel() 
     private lateinit var navController: NavController
     val title: LiveData<String> get() = _title
 
+    // function for setting up the nav controller for the view model
+    fun setNavController(navController: NavController) {
+        this.navController = navController
+    }
+
+    // function for fetching the release
     fun fetchRelease(id: String) {
         viewModelScope.launch {
             try {
@@ -24,7 +30,6 @@ class ReleaseViewModel(private val repository: ReleaseRepository) : ViewModel() 
                 val response = repository.fetchRelease(id)
                 // get the release returned
                 val release: Release = response.results.first()
-                println(release.title)
                 _title.value = release.title
 
                 // go to details w/ the release
