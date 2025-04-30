@@ -4,10 +4,13 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import com.nau.releasefinder.data.database.converters.ListStringConverter
 import com.nau.releasefinder.data.database.model.Release
 
-// define the room database and its contents
+// define the room database and its contents, also call the type converter
 @Database(entities = [Release::class], version = 1, exportSchema = false)
+@TypeConverters(ListStringConverter::class)
 abstract class ReleaseDatabase : RoomDatabase(){
     // abstract function to get the DAO
     abstract fun releaseDao() : ReleaseDao
