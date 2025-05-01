@@ -71,14 +71,14 @@ class DetailsFragment : Fragment() {
         // if a repress or reissue according to the format list
         if(release.format.contains("Repress") || release.format.contains("Reissue")) {
             // make the original release text invisible, and the re-release text visible
-            origRelease.visibility = View.INVISIBLE
+            origRelease.visibility = View.GONE
             reRelease.visibility = View.VISIBLE
         }
         // otherwise, if an original release copy
         else {
             // make the original release text visible, and the re-release text invisible
             origRelease.visibility = View.VISIBLE
-            reRelease.visibility = View.INVISIBLE
+            reRelease.visibility = View.GONE
         }
 
         releaseViewModel.title.observe(viewLifecycleOwner) { title ->
