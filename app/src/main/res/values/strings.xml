@@ -7,8 +7,8 @@
     <string name="sample_num">ABC-12345</string>
     <string name="released_in">Released in:</string>
     <string name="back_button">Back to Home</string>
-    <string name="original_release">This is an original release copy</string>
+    <string name="original_release">This is likely an original release copy</string>
     <string name="sample_country">USA</string>
-    <string name="reissue_release">This is not an original release copy</string>
+    <string name="reissue_release">This is likely not an original release copy</string>
     <string name="releasefinder">ReleaseFinder</string>
 </resources>
