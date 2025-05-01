@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import androidx.transition.TransitionInflater
+import com.google.android.material.animation.AnimationUtils
 import com.nau.releasefinder.R
 import com.nau.releasefinder.data.database.ReleaseDatabase
 import com.nau.releasefinder.data.repository.ReleaseRepository
@@ -36,6 +38,9 @@ class HomeFragment : Fragment() {
         val factory = ReleaseViewModelFactory(repository)
         releaseViewModel = ViewModelProvider(this, factory).get(ReleaseViewModel::class.java)
 
+        val transitionInflater = TransitionInflater.from(requireContext())
+        exitTransition = transitionInflater.inflateTransition(R.transition.fade)
+
         // inflate the XML file
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
@@ -47,12 +52,14 @@ class HomeFragment : Fragment() {
         // get the various views
         val searchText: EditText = view.findViewById(R.id.et_search_box)
         val submitButton: Button = view.findViewById(R.id.btn_submit)
+        val buttonAnimation = android.view.animation.AnimationUtils.loadAnimation(this.context, R.anim.bounce)
 
         // set the nav controller
         navController = findNavController()
 
         // listen for a submit button click
         submitButton.setOnClickListener {
+            submitButton.startAnimation(buttonAnimation)
             // get the search field text
             val search = searchText.text.toString().trim()
 

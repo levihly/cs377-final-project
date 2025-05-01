@@ -10,7 +10,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.transition.TransitionInflater
 import coil.load
 import com.nau.releasefinder.R
 import com.nau.releasefinder.data.database.ReleaseDatabase
@@ -35,6 +37,10 @@ class DetailsFragment : Fragment() {
         val factory = ReleaseViewModelFactory(repository)
         releaseViewModel = ViewModelProvider(this, factory).get(ReleaseViewModel::class.java)
 
+        val transitionInflater = TransitionInflater.from(requireContext())
+        enterTransition = transitionInflater.inflateTransition(R.transition.slide_right)
+        exitTransition = transitionInflater.inflateTransition(R.transition.slide_right)
+
         return inflater.inflate(R.layout.fragment_details, container, false)
     }
 
@@ -52,6 +58,7 @@ class DetailsFragment : Fragment() {
         val yearText: TextView = view.findViewById(R.id.yearText)
         val origRelease: TextView = view.findViewById(R.id.releaseTextOrig)
         val reRelease: TextView = view.findViewById(R.id.releaseTextReissue)
+        val buttonAnimation = android.view.animation.AnimationUtils.loadAnimation(this.context, R.anim.bounce)
 
         // use coil to load image
         thumbImageView.load(release.thumb)
@@ -77,5 +84,11 @@ class DetailsFragment : Fragment() {
         releaseViewModel.title.observe(viewLifecycleOwner) { title ->
             titleTextView.text = title
         }
+
+        backButton.setOnClickListener {
+            backButton.startAnimation(buttonAnimation)
+            findNavController().navigate(R.id.action_detailsFragment_to_homeFragment)
+        }
     }
+
 }
