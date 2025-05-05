@@ -54,3 +54,9 @@ page, where you will be told if it's likely an original release copy or not.
 
 5. If you would like to search again, click the "Back to Home" button at the bottom of the
 release details page to be navigated back to the home page.
+
+## The Team:
+
+Payton Watts- https://github.com/psw35
+
+Levi Ly- https://github.com/levihly
