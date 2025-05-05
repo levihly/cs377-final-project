@@ -1,6 +1,7 @@
 package com.nau.releasefinder.ui.viewmodel
 
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -25,6 +26,7 @@ class ReleaseViewModel(private val repository: ReleaseRepository) : ViewModel() 
     // function for fetching the release
     fun fetchRelease(id: String) {
         viewModelScope.launch {
+            // try to get release
             try {
                 // get the API response
                 val response = repository.fetchRelease(id)
@@ -32,10 +34,15 @@ class ReleaseViewModel(private val repository: ReleaseRepository) : ViewModel() 
                 val release: Release = response.results.first()
                 _title.value = release.title
 
-                // go to details w/ the release
-                val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(release)
-                navController.navigate(action)
+                // if release is found
+                // catalog number will be null if an invalid catalog number was used
+                if(release.catno != null) {
+                    // go to details w/ the release
+                    val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(release)
+                    navController.navigate(action)
+                }
 
+            // if an error is encountered, return the exception as a log message
             } catch (exception: Exception) {
                 // handle error
                 Log.d("fetchRelease", exception.toString())
